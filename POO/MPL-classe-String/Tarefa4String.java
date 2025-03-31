@@ -1,24 +1,52 @@
 import java.util.Scanner;
 public class Tarefa4String {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Digite a largura do losango: ");
-        int num = scanner.nextInt();
-        String los = genLosango(num);
-        System.out.println(los);
-        scanner.close();
+        genLosango(11);
     }
 
-    public static String genLosango(int num){
+    public static void genLosango(int num){
         String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String los = "";
 
-        for (int i = num ; i >= 0 ; i--) {
-            for (int j = 1 ; j <=(num/2) ; j++) {
-                los += "test ";
+        for (int i = 0 ; i<=num/2 ; i++) {
+            for (int j = 10 ; j>i ; j--) {
+                los += " ";
             }
+            if (i == 0) {
+                for (int j = 0; j <= i; j++) {
+                    los += abc.charAt(j);
+                }
+            }
+            else{
+                for (int j = 0 ; j <= i*2 ; j++) {
+                    los += abc.charAt(j);
+                }
+            }
+            los = los.substring(5);
             System.out.println(los);
+            los = "";
         }
-        return los;
+
+        for (int i = 1 ; i<=num/2 ; i++) {
+            for (int j = 0 ; j<5 ; j++) {
+                los += " ";
+            }
+            for (int j = 0 ; j<i ; j++) {
+                los += " ";
+            }
+            if (i == num) {
+                for (int j = 10; j <= i; j--) {
+                    los += abc.charAt(j);
+                }
+            }
+            else{
+                for (int j = 10 ; j >= i*2 ; j--) {
+                    los += abc.charAt(j);
+                }
+            }
+            los = los.substring(5);
+            System.out.println(los);
+            los = "";
+        }
     }
 }
