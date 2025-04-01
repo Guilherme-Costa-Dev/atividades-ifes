@@ -17,7 +17,7 @@ def calcIMC(peso:float, alt:float)->float:
     return ((peso)/(alt**2))
 
 def ordList(lista:list)->list:
-    lista.sort(key= lambda x: calcIMC(x[1], x[2]))
+    lista.sort(key = lambda x: calcIMC(x[1], x[2]))
     return lista
 
 def printList(lista:list)->None:
