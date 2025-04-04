@@ -8,6 +8,9 @@ public class Desafio2String{
         teclado.close();
         String word = "";
 
+        System.out.println("PALAVRAS ENCONTRADAS");
+        System.out.println("====================");
+
         for (int i = 0; i < texto.length(); i++){
             if (String.valueOf(texto.charAt(i)).equals(" ")) {
                 if (word.length() >= 4) {
