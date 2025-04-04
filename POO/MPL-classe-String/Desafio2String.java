@@ -8,6 +8,7 @@ public class Desafio2String{
         teclado.close();
         String word = "";
 
+        System.out.println();
         System.out.println("PALAVRAS ENCONTRADAS");
         System.out.println("====================");
 
