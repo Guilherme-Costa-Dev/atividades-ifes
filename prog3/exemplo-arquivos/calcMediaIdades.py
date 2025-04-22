@@ -7,7 +7,6 @@ def main():
         conteudo = arq_entrada.read()
 
     # continue o programa usando conteudo
-    print(conteudo)
     lista = conteudo.split()
     total = 0
     index = 0
