@@ -13,7 +13,7 @@ public class Eq2g {
 
     //calcular quantidade de raizes
     public int quantRaizes() {
-        double delta = Math.sqrt(Math.pow(b, 2)*(-4*a*c));
+        double delta = Math.pow(b, 2) -4*a*c;
         if (delta > 0) {
             return 2;
         }
@@ -26,12 +26,12 @@ public class Eq2g {
 
     //calcular a raiz1
     public double raiz1() {
-        return (-b + Math.sqrt(Math.pow(b, 2)*(-4*a*c)))/2*a;
+        return (-b + Math.sqrt(Math.pow(b, 2) -4*a*c))/(2*a);
     }
     
     //calcula a raiz2
     public double raiz2() {
-        return (-b - Math.sqrt(Math.pow(b, 2)*(-4*a*c)))/2*a;
+        return (-b - Math.sqrt(Math.pow(b, 2) -4*a*c))/(2*a);
     }
 
     //calcula o valor minimo ou maximo da funcao
