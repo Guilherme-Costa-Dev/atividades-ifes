@@ -16,5 +16,7 @@ public class Sistema {
             System.out.println("Qual o valor de y: ");
             y = scanner.nextFloat();
         }
+
+        scanner.close();
     }
 }
