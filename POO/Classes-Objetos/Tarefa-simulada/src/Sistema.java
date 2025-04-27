@@ -25,5 +25,6 @@ public class Sistema {
 		System.out.print("Quantidade de tampas de bueiro com diâmetro de ");
 		System.out.printf("%.2f m: %.0f\n", tampaDiam, quantTampas);
 		System.out.printf("Custo de cada tampa (R$): %.2f\n", tampaCusto);
+		teclado.close();
 	} // main
 } // Sistema
