@@ -28,7 +28,7 @@ def imprimirDados(lista:list):
     with open("saida.txt", "w", encoding="utf-8") as arquivo:
         for i in range(len(lista)):
             imc = calcIMC(lista[i][1], lista[i][2])
-            imc = str(imc)
+            imc = f"{imc:.2f}"
             arquivo.write(lista[i][0])
             arquivo.write(";")
             arquivo.write(imc)
