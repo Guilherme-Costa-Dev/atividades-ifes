@@ -34,6 +34,11 @@ public class Eq2g {
         return (-b - Math.sqrt(Math.pow(b, 2) -4*a*c))/(2*a);
     }
 
+    //calcular o valor de y em funcao de um x
+    public double fdex(double x) {
+        return a * Math.pow(x, 2) + b * x + c;
+    }
+
     //calcula o valor minimo ou maximo da funcao
     public double min_max() {
         double xv = -b / (2 * a);

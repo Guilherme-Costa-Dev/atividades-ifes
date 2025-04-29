@@ -14,7 +14,7 @@ public class SistemaA {
             Eq2g funcao = new Eq2g(-5, 20, 1);
 
             // calcular a altura em funcao do tempo lido
-            double altura = funcao.a * Math.pow(tempo, 2) + funcao.b * tempo + funcao.c;
+            double altura = funcao.fdex(tempo);
 
             //exibicao do resultado
             System.out.println(tempo+"s, " + altura + "m");
