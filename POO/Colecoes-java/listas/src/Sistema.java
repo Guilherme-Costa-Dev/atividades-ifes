@@ -5,10 +5,11 @@ public class Sistema {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Circulo> lista = new ArrayList<>();
 
-        double raio = 1;
+        double raio;
+        System.out.println("Digite o valor do raio: ");
+        raio = scanner.nextDouble();
+
         while (raio > 0) {
-            System.out.println("Digite o valor do raio: ");
-            raio = scanner.nextDouble();
             System.out.println("Digite o valor de x: ");
             Double x = scanner.nextDouble();
             System.out.println("Digite o valor de y: ");
@@ -16,12 +17,16 @@ public class Sistema {
             Ponto ponto = new Ponto(x, y);
             Circulo circulo = new Circulo(ponto, raio);
             lista.add(circulo);
+
+            System.out.println("Digite o valor do raio: ");
+            raio = scanner.nextDouble();
         }
+
         scanner.close();
 
         int index = 1;
         for (Circulo circulo : lista) {
-            System.out.println("Circulo " + index + ": Area " + circulo.area() + "Perimetro " + circulo.perimetro());
+            System.out.printf("Circulo %d: Area %.2f, Perimetro %.2f\n", index, circulo.area(), circulo.perimetro());
             index++;
         }
     }
