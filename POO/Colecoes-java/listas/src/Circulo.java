@@ -1,11 +1,9 @@
 import java.lang.Math;
 public class Circulo {
 
-	Ponto centro;
 	double raio;
 	
-	public Circulo(Ponto centro, Double raio) {
-		this.centro = centro;
+	public Circulo(Double raio) {
 		this.raio = raio;
 	}
 

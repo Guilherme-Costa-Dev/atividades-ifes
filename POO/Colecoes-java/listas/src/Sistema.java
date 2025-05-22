@@ -15,7 +15,7 @@ public class Sistema {
             System.out.println("Digite o valor de y: ");
             Double y = scanner.nextDouble();
             Ponto ponto = new Ponto(x, y);
-            Circulo circulo = new Circulo(ponto, raio);
+            Circulo circulo = new Circulo(raio);
             lista.add(circulo);
 
             System.out.println("Digite o valor do raio: ");
