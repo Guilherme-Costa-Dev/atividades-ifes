@@ -12,10 +12,10 @@ public class Pessoa {
     }
 
     public String toString(){
-        return "nome= " + nome + "\n" +
-                "idade= " + idade + "\n" +
-                "celular= " + celular + "\n" +
-                "email= " + email + "\n"
+        return "Nome -> " + nome + "\n" +
+                "Idade -> " + idade + "\n" +
+                "Telefone -> " + celular + "\n" +
+                "Email -> " + email + "\n"
         ;
     }
 }
