@@ -1,5 +1,3 @@
-package src.Atividade1;
-
 public class SistemaB {
     public static void main(String[] args) {
         //a area e: x * (x+8) = 1680
