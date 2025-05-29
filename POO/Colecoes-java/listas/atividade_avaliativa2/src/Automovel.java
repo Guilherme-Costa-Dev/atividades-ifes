@@ -14,7 +14,7 @@ public class Automovel {
     }
 
     public double pesoTotal(double peso_fabrica, int quantidade_de_passageiros, int quantidade_litros_gasolina){
-        return peso_fabrica+(quantidade_de_passageiros*5)+(quantidade_litros_gasolina*0.75);
+        return peso_fabrica+(quantidade_de_passageiros*75)+(quantidade_litros_gasolina*0.75);
     }
 
     public String toString(){
