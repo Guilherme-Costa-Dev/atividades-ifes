@@ -63,6 +63,8 @@ public class Sistema{
         String strData = scanner.nextLine();
         LocalDate data = LocalDate.parse(strData);
 
+        scanner.close();
+
         System.out.println("==============================");
 
         System.out.println("");
