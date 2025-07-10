@@ -54,10 +54,7 @@ public class Sistema {
                     }
                 }
             }
-        
-
         }
-
         scanner.close();
     }    
 }
