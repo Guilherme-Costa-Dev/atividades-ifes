@@ -1,0 +1,290 @@
+-- -----------------------------------------------------
+-- Schema Empresa
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS Empresa ;
+
+-- -----------------------------------------------------
+-- Schema Empresa
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS Empresa DEFAULT CHARACTER SET utf8 ;
+USE Empresa ;
+
+-- -----------------------------------------------------
+-- Table Empregado
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS Empregado (
+  idEmprg INT NOT NULL,
+  nomEmprg VARCHAR(50) NOT NULL,
+  numCPFEmprg VARCHAR(15) NULL,
+  idSupervEmprg INT NULL,
+  datAdmsEmprg DATE NOT NULL,
+  datIniSalEmprg DATE NOT NULL,
+  valSalEmprg DECIMAL(10,2) NOT NULL,
+  idDepto INT NOT NULL,
+  PRIMARY KEY (idEmprg))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table Dependencia
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS Dependencia (
+  idDepdc INT NOT NULL,
+  dscRelDepdc VARCHAR(30) NOT NULL,
+  PRIMARY KEY (idDepdc))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table Dependente
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS Dependente (
+  idEmprg INT NOT NULL,
+  idDepend INT NOT NULL,
+  nomDepend VARCHAR(50) NOT NULL,
+  datNascDepend DATE NULL,
+  indSexoDepend CHAR(1) NOT NULL,
+  idDepdc INT NOT NULL,
+  PRIMARY KEY (idEmprg, idDepend),
+  CONSTRAINT fk_Dependente_Dependencia
+    FOREIGN KEY (idDepdc)
+    REFERENCES Dependencia (idDepdc)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_Dependente_Empregado1
+    FOREIGN KEY (idEmprg)
+    REFERENCES Empregado (idEmprg)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table Departamento
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS Departamento (
+  idDepto INT NOT NULL,
+  dscDepto VARCHAR(50) NOT NULL,
+  idGerEmprg INT NULL,
+  PRIMARY KEY (idDepto),
+  CONSTRAINT fk_Departamento_Empregado1
+    FOREIGN KEY (idGerEmprg)
+    REFERENCES Empregado (idEmprg)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table Localizacao
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS Localizacao (
+  idLocal INT NOT NULL,
+  dscLocal VARCHAR(50) NOT NULL,
+  PRIMARY KEY (idLocal))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table Projeto
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS Projeto (
+  idProj INT NOT NULL,
+  dscProj VARCHAR(50) NOT NULL,
+  idLocal INT NULL,
+  PRIMARY KEY (idProj),
+  CONSTRAINT fk_Projeto_Local1
+    FOREIGN KEY (idLocal)
+    REFERENCES Localizacao (idLocal)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table DeptoProjeto
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS DeptoProjeto (
+  idDepProj INT NOT NULL,
+  dscObsDepProj VARCHAR(200) NOT NULL,
+  idDepto INT NOT NULL,
+  idProj INT NOT NULL,
+  valOrcamDepProj DECIMAL(10,2) NULL,
+  PRIMARY KEY (idDepProj),
+  CONSTRAINT fk_DeptoProjeto_Departamento1
+    FOREIGN KEY (idDepto)
+    REFERENCES Departamento (idDepto)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_DeptoProjeto_Projeto1
+    FOREIGN KEY (idProj)
+    REFERENCES Projeto (idProj)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table EmprProjeto
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS EmprProjeto (
+  idEmprProj INT NOT NULL,
+  qtdHorasEmprProj INT NOT NULL,
+  idProj INT NOT NULL,
+  idEmprg INT NOT NULL,
+  PRIMARY KEY (idEmprProj),
+  CONSTRAINT fk_EmprProjeto_Projeto1
+    FOREIGN KEY (idProj)
+    REFERENCES Projeto (idProj)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_EmprProjeto_Empregado1
+    FOREIGN KEY (idEmprg)
+    REFERENCES Empregado (idEmprg)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table HistoricoSalario
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS HistoricoSalario (
+  idEmprg INT NOT NULL,
+  DatIniHistSal DATE NOT NULL,
+  DatFimHistSal DATE NOT NULL,
+  valSalHistSal DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (idEmprg, DatIniHistSal),
+  CONSTRAINT fk_HistoricoSalario_Empregado1
+    FOREIGN KEY (idEmprg)
+    REFERENCES Empregado (idEmprg)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Data for table Empregado
+-- -----------------------------------------------------
+
+INSERT INTO Empregado (idEmprg, nomEmprg, numCPFEmprg, idSupervEmprg, datAdmsEmprg, datIniSalEmprg, valSalEmprg, idDepto) VALUES (1010, 'João dos Santos Matias', '22342651007', 7070, '2010/10/10', '2018/10/05', 3500.00, 1);
+INSERT INTO Empregado (idEmprg, nomEmprg, numCPFEmprg, idSupervEmprg, datAdmsEmprg, datIniSalEmprg, valSalEmprg, idDepto) VALUES (2020, 'Ana Cláudia Soares', '11901302032', 7070, '2019/12/04', '2019/12/04', 3000.00, 1);
+INSERT INTO Empregado (idEmprg, nomEmprg, numCPFEmprg, idSupervEmprg, datAdmsEmprg, datIniSalEmprg, valSalEmprg, idDepto) VALUES (3030, 'Clara Andrade', '58974455080', 9090, '2017/02/08', '2018/07/29', 1800.00, 2);
+INSERT INTO Empregado (idEmprg, nomEmprg, numCPFEmprg, idSupervEmprg, datAdmsEmprg, datIniSalEmprg, valSalEmprg, idDepto) VALUES (4040, 'Pedro Antônio de Souza', '80686936027', 8080, '2010/03/30', '2015/05/17', 5000.00, 3);
+INSERT INTO Empregado (idEmprg, nomEmprg, numCPFEmprg, idSupervEmprg, datAdmsEmprg, datIniSalEmprg, valSalEmprg, idDepto) VALUES (5050, 'Tomás Aquino Nascimento', '85029225056', 9599, '2014/04/25', '2017/06/24', 8000.00, 4);
+INSERT INTO Empregado (idEmprg, nomEmprg, numCPFEmprg, idSupervEmprg, datAdmsEmprg, datIniSalEmprg, valSalEmprg, idDepto) VALUES (6060, 'Sophia de Jesus', '25517679030', 9599, '2018/05/24', '2019/03/15', 2850.00, 5);
+INSERT INTO Empregado (idEmprg, nomEmprg, numCPFEmprg, idSupervEmprg, datAdmsEmprg, datIniSalEmprg, valSalEmprg, idDepto) VALUES (7070, 'Romano Enterino Pereira', '56926899010', 2020, '2016/08/01', '2016/08/01', 5000.00, 2);
+INSERT INTO Empregado (idEmprg, nomEmprg, numCPFEmprg, idSupervEmprg, datAdmsEmprg, datIniSalEmprg, valSalEmprg, idDepto) VALUES (8080, 'Pamela Machado da Hora', '97598286000', 1010, '2000/10/09', '2001/11/16', 6000.00, 3);
+INSERT INTO Empregado (idEmprg, nomEmprg, numCPFEmprg, idSupervEmprg, datAdmsEmprg, datIniSalEmprg, valSalEmprg, idDepto) VALUES (9090, 'Ewerton Mattos Rocha', '05073555040', NULL, '2014/05/17', '2016/11/19', 4250.00, 5);
+INSERT INTO Empregado (idEmprg, nomEmprg, numCPFEmprg, idSupervEmprg, datAdmsEmprg, datIniSalEmprg, valSalEmprg, idDepto) VALUES (9599, 'Leonardo Carvalho Ferreira', '78171606008', NULL, '1999/10/12', '2004/10/25', 9000.00, 1);
+
+
+-- -----------------------------------------------------
+-- Data for table Dependencia
+-- -----------------------------------------------------
+START TRANSACTION;
+USE Empresa;
+INSERT INTO Dependencia (idDepdc, dscRelDepdc) VALUES (1, 'Filho(a)');
+INSERT INTO Dependencia (idDepdc, dscRelDepdc) VALUES (2, 'Cônjuge');
+INSERT INTO Dependencia (idDepdc, dscRelDepdc) VALUES (3, 'Menor sob Guarda');
+INSERT INTO Dependencia (idDepdc, dscRelDepdc) VALUES (4, 'Pai');
+INSERT INTO Dependencia (idDepdc, dscRelDepdc) VALUES (5, 'Mãe');
+INSERT INTO Dependencia (idDepdc, dscRelDepdc) VALUES (6, 'Adotado');
+
+-- -----------------------------------------------------
+-- Data for table Dependente
+-- -----------------------------------------------------
+START TRANSACTION;
+USE Empresa;
+INSERT INTO Dependente (idEmprg, idDepend, nomDepend, datNascDepend, indSexoDepend, idDepdc) VALUES (2020, 1, 'Claudecir Soares', '2012/12/17', 'M', 1);
+INSERT INTO Dependente (idEmprg, idDepend, nomDepend, datNascDepend, indSexoDepend, idDepdc) VALUES (2020, 2, 'Maria Cândido Soares', '2015/10/28', 'M', 1);
+INSERT INTO Dependente (idEmprg, idDepend, nomDepend, datNascDepend, indSexoDepend, idDepdc) VALUES (2020, 3, 'Margarida Aparecida Santos', '1965/10/24', 'F', 5);
+INSERT INTO Dependente (idEmprg, idDepend, nomDepend, datNascDepend, indSexoDepend, idDepdc) VALUES (9090, 1, 'Yuri Gabriel da Rosa', '2018/09/20', 'M', 3);
+INSERT INTO Dependente (idEmprg, idDepend, nomDepend, datNascDepend, indSexoDepend, idDepdc) VALUES (8080, 1, 'Daniel Tiago Gomes', '1995/01/26', 'M', 2);
+INSERT INTO Dependente (idEmprg, idDepend, nomDepend, datNascDepend, indSexoDepend, idDepdc) VALUES (5050, 1, 'Sebastiana Luciana Valentina Cavalcanti', '1953/12/06', 'F', 5);
+INSERT INTO Dependente (idEmprg, idDepend, nomDepend, datNascDepend, indSexoDepend, idDepdc) VALUES (5050, 2, 'Manoel Henrique Cavalcanti', '2018/10/25', 'M', 1);
+INSERT INTO Dependente (idEmprg, idDepend, nomDepend, datNascDepend, indSexoDepend, idDepdc) VALUES (7070, 1, 'Raimundo Arthur Benício Mendes', '2000/10/14', 'M', 1);
+INSERT INTO Dependente (idEmprg, idDepend, nomDepend, datNascDepend, indSexoDepend, idDepdc) VALUES (7070, 2, 'Malu Isabel Tatiane', '2005/03/05', 'F', 1);
+INSERT INTO Dependente (idEmprg, idDepend, nomDepend, datNascDepend, indSexoDepend, idDepdc) VALUES (1010, 1, 'Letícia Hadassa Pereira', '2009/04/08', 'F', 6);
+INSERT INTO Dependente (idEmprg, idDepend, nomDepend, datNascDepend, indSexoDepend, idDepdc) VALUES (3030, 1, 'Manuel Anderson Igor Oliveira', '1960/08/11', 'M', 4);
+
+
+-- -----------------------------------------------------
+-- Data for table Departamento
+-- -----------------------------------------------------
+START TRANSACTION;
+USE Empresa;
+INSERT INTO Departamento (idDepto, dscDepto, idGerEmprg) VALUES (1, 'Recursos Humanos', 9090);
+INSERT INTO Departamento (idDepto, dscDepto, idGerEmprg) VALUES (2, 'Contabilidade', 3030);
+INSERT INTO Departamento (idDepto, dscDepto, idGerEmprg) VALUES (3, 'Custos', 4040);
+INSERT INTO Departamento (idDepto, dscDepto, idGerEmprg) VALUES (4, 'Terraplanagem', NULL);
+INSERT INTO Departamento (idDepto, dscDepto, idGerEmprg) VALUES (5, 'Oficina de Projetos', 5050);
+
+
+-- -----------------------------------------------------
+-- Data for table Localizacao
+-- -----------------------------------------------------
+START TRANSACTION;
+USE Empresa;
+INSERT INTO Localizacao (idLocal, dscLocal) VALUES (1, 'São Paulo-SP');
+INSERT INTO Localizacao (idLocal, dscLocal) VALUES (2, 'Teresina-PI');
+INSERT INTO Localizacao (idLocal, dscLocal) VALUES (3, 'Campos dos Goitacazes-RJ');
+INSERT INTO Localizacao (idLocal, dscLocal) VALUES (4, 'Vitória-ES');
+INSERT INTO Localizacao (idLocal, dscLocal) VALUES (5, 'Brasília-DF');
+
+
+-- -----------------------------------------------------
+-- Data for table Projeto
+-- -----------------------------------------------------
+START TRANSACTION;
+USE Empresa;
+INSERT INTO Projeto (idProj, dscProj, idLocal) VALUES (10, 'Desenvolvimento de Projetos de Venda', 2);
+INSERT INTO Projeto (idProj, dscProj, idLocal) VALUES (20, 'Lançamento de Produtos Especiais', 3);
+INSERT INTO Projeto (idProj, dscProj, idLocal) VALUES (30, 'Reforma do Prédio Central', 4);
+INSERT INTO Projeto (idProj, dscProj, idLocal) VALUES (40, 'Levantamento de Dados Estatísticos', 5);
+INSERT INTO Projeto (idProj, dscProj, idLocal) VALUES (50, 'Montagem de Estruturas Pesadas', 1);
+
+
+-- -----------------------------------------------------
+-- Data for table DeptoProjeto
+-- -----------------------------------------------------
+START TRANSACTION;
+USE Empresa;
+INSERT INTO DeptoProjeto (idDepProj, dscObsDepProj, idDepto, idProj, valOrcamDepProj) VALUES (1, 'Projetos que departamentos apoiam fora da unidade de controle operacional', 3, 10, 1000000.00);
+INSERT INTO DeptoProjeto (idDepProj, dscObsDepProj, idDepto, idProj, valOrcamDepProj) VALUES (2, 'Tem como objetivo verificar a situação das instalações elétricas e hidráulicas das obras em andamento, contanto com apoio dos departamentos operacionais', 4, 10, 200000.00);
+INSERT INTO DeptoProjeto (idDepProj, dscObsDepProj, idDepto, idProj, valOrcamDepProj) VALUES (3, 'Valoriza a qualidade total e busca de novas ideias e produtos', 3, 40, 545000.00);
+INSERT INTO DeptoProjeto (idDepProj, dscObsDepProj, idDepto, idProj, valOrcamDepProj) VALUES (4, 'Desenvolve análises laboratoriais embrionárias no sentido de construir valores econômicos e sociais para a empresa', 2, 30, 875000.00);
+INSERT INTO DeptoProjeto (idDepProj, dscObsDepProj, idDepto, idProj, valOrcamDepProj) VALUES (5, 'Analisam dados brutos e estatísticos em função de novos indicadores operacionais e econômicos', 2, 50, 95000.00);
+
+
+-- -----------------------------------------------------
+-- Data for table EmprProjeto
+-- -----------------------------------------------------
+START TRANSACTION;
+USE Empresa;
+INSERT INTO EmprProjeto (idEmprProj, qtdHorasEmprProj, idProj, idEmprg) VALUES (1, 100, 10, 2020);
+INSERT INTO EmprProjeto (idEmprProj, qtdHorasEmprProj, idProj, idEmprg) VALUES (2, 50, 20, 2020);
+INSERT INTO EmprProjeto (idEmprProj, qtdHorasEmprProj, idProj, idEmprg) VALUES (3, 80, 20, 3030);
+INSERT INTO EmprProjeto (idEmprProj, qtdHorasEmprProj, idProj, idEmprg) VALUES (4, 90, 30, 5050);
+INSERT INTO EmprProjeto (idEmprProj, qtdHorasEmprProj, idProj, idEmprg) VALUES (5, 75, 40, 7070);
+INSERT INTO EmprProjeto (idEmprProj, qtdHorasEmprProj, idProj, idEmprg) VALUES (6, 95, 30, 7070);
+INSERT INTO EmprProjeto (idEmprProj, qtdHorasEmprProj, idProj, idEmprg) VALUES (7, 35, 10, 9090);
+INSERT INTO EmprProjeto (idEmprProj, qtdHorasEmprProj, idProj, idEmprg) VALUES (8, 120, 40, 8080);
+INSERT INTO EmprProjeto (idEmprProj, qtdHorasEmprProj, idProj, idEmprg) VALUES (9, 45, 40, 4040);
+
+
+-- -----------------------------------------------------
+-- Data for table HistoricoSalario
+-- -----------------------------------------------------
+START TRANSACTION;
+USE Empresa;
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (1010, '2010/10/10', '2012/11/30', 1200.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (1010, '2012/01/12', '2014/08/31', 2000.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (1010, '2014/09/01', '2018/10/04', 2800.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (3030, '2017/02/08', '2018/07/28', 1200.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (4040, '2010/03/30', '2013/10/29', 2500.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (4040, '2013/10/30', '2015/05/16', 3200.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (5050, '2014/04/25', '2017/06/23', 5000.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (8080, '2000/10/09', '2001/11/15', 4000.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (6060, '2018/05/24', '2019/03/14', 1900.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (9090, '2014/05/17', '2016/01/30', 2500.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (9090, '2016/02/01', '2016/11/18', 3800.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (9599, '1999/10/12', '2002/09/30', 4800.00);
+INSERT INTO HistoricoSalario (idEmprg, DatIniHistSal, DatFimHistSal, valSalHistSal) VALUES (9599, '2002/10/01', '2004/10/24', 7000.00);
+
+COMMIT;
+
