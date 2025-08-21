@@ -27,3 +27,7 @@ def intercalacaoOrd(lista1:list, lista2:list)->list:
         j+=1
         
     return lista3
+
+def imprimirListas(lista:list)->None:
+    for i in range(len(lista)):
+        print("LISTA[",i,"] = ",lista[i])
