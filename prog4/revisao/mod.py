@@ -1,3 +1,12 @@
+'''
+    Grupo:
+        Soul Society
+    Integrantes:
+        Guilherme Cordeiro Costa
+        Fillipy Costa da Silva
+        Pablo Nistal Lazaro Santos
+'''
+
 def remover_rep(frase:str)->list:
     lista = list(frase)
     lista2 = []

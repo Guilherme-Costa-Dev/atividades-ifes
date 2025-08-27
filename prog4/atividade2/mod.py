@@ -1,7 +1,16 @@
+'''
+    Grupo:
+        Soul Society
+    Integrantes:
+        Guilherme Cordeiro Costa
+        Fillipy Costa da Silva
+        Pablo Nistal Lazaro Santos
+'''
+
 def criarLista(tam:int)->list:
     lista = []
     for i in range(tam):
-        num = int(input())
+        num = float(input())
         lista.append(num)
         lista.sort()
     return lista
