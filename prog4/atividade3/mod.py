@@ -11,6 +11,7 @@ def lerArquivo(nome:str)->hash:
     with open(nome, "r", encoding="utf-8") as arquivo:
         hash = {}
         for i in arquivo:
+            i = i.strip("\n")
             lista = i.split(";")
             lista2 = []
             for j in range(1, len(lista)):
