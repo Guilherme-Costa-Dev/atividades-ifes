@@ -1,10 +1,9 @@
 import mod
-import sys
 
 def main():
 
-    frase1 = sys.argv[1]
-    frase2 = sys.argv[2]
+    frase1 = str(input())
+    frase2 = str(input())
 
     lista1 = mod.remover_rep(frase1)
     lista2 = mod.remover_rep(frase2)
@@ -16,7 +15,6 @@ def main():
     lista5.append(sorted(lista2))
     lista5.append(sorted(lista3))
     lista5.append(sorted(lista4))
-    lista5.sort(key=len)
 
     lista6 = []
     for i in range(len(lista5)):
