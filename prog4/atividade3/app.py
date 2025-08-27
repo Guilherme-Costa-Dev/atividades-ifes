@@ -11,7 +11,10 @@ import mod
 
 def main():
 
+    nome = "base.txt"
+    texto = mod.lerArquivo(nome)
 
+    print(texto)
 
 
 if __name__ == "__main__":
