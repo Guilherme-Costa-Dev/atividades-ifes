@@ -11,7 +11,7 @@ import mod
 
 def main():
 
-    nome = "base.txt"
+    nome = str(input())
     texto = mod.lerArquivo(nome)
 
     print(texto)
