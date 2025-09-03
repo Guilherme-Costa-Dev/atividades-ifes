@@ -1,2 +1,2 @@
-abacaxi;12.30;10;5
-morango;8.60;8;3
+abacaxi;12.30;10;0
+morango;8.60;8;0

@@ -18,6 +18,9 @@ def lerArquivo()->dict:
             for j in range(1, len(lista)):
                 lista2.append(lista[j])
             hash[lista[0]] = lista2
+            hash[lista[0]][0] = float(hash[lista[0]][0])
+            hash[lista[0]][1] = int(hash[lista[0]][1])
+            hash[lista[0]][2] = int(hash[lista[0]][2])
     arquivo.close()
     return hash
 
@@ -33,3 +36,12 @@ def venderProd(hash:dict)->None:
             else:
                 print("QUANTIDADE INVALIDA")
         prod = str(input())
+
+def imprimirRelatorio(hash:dict)->None:
+    total = 0
+    for i in sorted(hash):
+        if hash[i][2] > 0:
+            valorProd = hash[i][2] * hash[i][0]
+            print(f"{i:<20}|{hash[i][2]:>8}|{valorProd:<8.2f}")
+            total += valorProd
+    print(f"TOTAL EM VENDAS = {total:.2f}")

@@ -11,9 +11,9 @@ import mod
 
 def main():
 
-    texto = mod.lerArquivo()
-
-    print(texto)
+    prod = mod.lerArquivo()
+    mod.venderProd(prod)
+    mod.imprimirRelatorio(prod)
 
 
 if __name__ == "__main__":
