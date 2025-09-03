@@ -60,3 +60,9 @@ def relatorioRep(hash:dict)->None:
     for i in sorted(hash):
         if (hash[i][1] - hash[i][2]) == 0:
             print(f"{i:<20}")
+
+def arquivoRelatorioRep(hash:dict)->None:
+    with open("REPOSICAO DE ESTOQUE.txt", "w", encoding="utf-8") as arquivo:
+        for i in sorted(hash):
+            if (hash[i][1] - hash[i][2]) == 0:
+                arquivo.write(f"{i:<20}\n")

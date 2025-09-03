@@ -16,6 +16,7 @@ def main():
     mod.imprimirRelatorio(prod)
     mod.arquivoRelatorio(prod)
     mod.relatorioRep(prod)
+    mod.arquivoRelatorioRep(prod)
 
 if __name__ == "__main__":
     main()
