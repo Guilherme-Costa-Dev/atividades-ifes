@@ -8,7 +8,7 @@
 '''
 
 def lerArquivo()->dict:
-    nome = "base.txt"
+    nome = "produtos.txt"
     with open(nome, "r", encoding="utf-8") as arquivo:
         hash = {}
         for i in arquivo:
@@ -45,3 +45,13 @@ def imprimirRelatorio(hash:dict)->None:
             print(f"{i:<20}|{hash[i][2]:>8}|{valorProd:<8.2f}")
             total += valorProd
     print(f"TOTAL EM VENDAS = {total:.2f}")
+
+def arquivoRelatorio(hash:dict)->None:
+    with open("RELATORIO DE VENDAS.txt", "w", encoding="utf-8") as arquivo:
+        total = 0
+        for i in sorted(hash):
+            if hash[i][2]>0:
+                valorProd = hash[i][2] * hash[i][0]
+                arquivo.write(f"{i:<20}|{hash[i][2]:>8}|{valorProd:<8.2f}\n")
+                total += valorProd
+        arquivo.write(f"TOTAL EM VENDAS = {total:.2f}")

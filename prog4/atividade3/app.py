@@ -14,7 +14,7 @@ def main():
     prod = mod.lerArquivo()
     mod.venderProd(prod)
     mod.imprimirRelatorio(prod)
-
+    mod.arquivoRelatorio(prod)
 
 if __name__ == "__main__":
     main()
