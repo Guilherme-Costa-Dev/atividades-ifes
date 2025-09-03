@@ -31,7 +31,7 @@ def venderProd(hash:dict)->None:
             print("PRODUTO INEXISTENTE")
         else:
             qnt = int(input("Digite a quantidade: "))
-            if (qnt > 0) and (qnt < (hash[prod][1])-(hash[prod][2])):
+            if (qnt > 0) and (qnt <= (hash[prod][1])-(hash[prod][2])):
                 hash[prod][2] = hash[prod][2] + qnt
             else:
                 print("QUANTIDADE INVALIDA")
@@ -55,3 +55,8 @@ def arquivoRelatorio(hash:dict)->None:
                 arquivo.write(f"{i:<20}|{hash[i][2]:>8}|{valorProd:<8.2f}\n")
                 total += valorProd
         arquivo.write(f"TOTAL EM VENDAS = {total:.2f}")
+
+def relatorioRep(hash:dict)->None:
+    for i in sorted(hash):
+        if (hash[i][1] - hash[i][2]) == 0:
+            print(f"{i:<20}")

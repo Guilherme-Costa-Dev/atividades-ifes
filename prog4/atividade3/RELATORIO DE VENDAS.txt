@@ -1,3 +1,4 @@
-abacaxi             |       3|36.90   
-morango             |       1|8.60    
-TOTAL EM VENDAS = 45.50
+abacaxi             |       4|49.20   
+banana              |      15|94.50   
+morango             |       8|68.80   
+TOTAL EM VENDAS = 212.50
