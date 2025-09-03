@@ -11,8 +11,7 @@ import mod
 
 def main():
 
-    nome = str(input())
-    texto = mod.lerArquivo(nome)
+    texto = mod.lerArquivo()
 
     print(texto)
 
