@@ -12,7 +12,7 @@ class Const:
     ALTURA_BLOCO = 15
     DISTANCIA_ENTRE_LINHAS = 25  # 15 + 10 (altura bloco + espaço)
     MOVIMENTO_BOLA_INICIAL = [2, -2]
-    VELOCIDADE_JOGADOR = 2.5
+    VELOCIDADE_JOGADOR = 3
 
     CORES = {
         "branca": (255, 255, 255),
@@ -37,7 +37,7 @@ qtde_total_blocos = qtde_blocos_linha * qtde_linhas_blocos
 
 movimento_bola = Const.MOVIMENTO_BOLA_INICIAL.copy()
 
-def criar_blocos(qtde_blocos_linha, qtde_linhas_blocos):
+def criar_blocos():
     altura_tela = Const.TAMANHO_TELA[1]
     largura_tela = Const.TAMANHO_TELA[0]
     distancia_entre_blocos = Const.DISTANCIA_BLOCOS
@@ -46,8 +46,8 @@ def criar_blocos(qtde_blocos_linha, qtde_linhas_blocos):
     distancia_entre_linhas = altura_bloco + 10
 
     blocos = []
-    for j in range(qtde_linhas_blocos):
-        for i in range(qtde_blocos_linha):
+    for j in range(Const.QTD_LINHAS_BLOCOS):
+        for i in range(Const.QTD_BLOCOS_LINHA):
             bloco = pygame.Rect(i * (largura_bloco + distancia_entre_blocos), j * distancia_entre_linhas, largura_bloco, altura_bloco)
             blocos.append(bloco)
     return blocos
@@ -106,7 +106,7 @@ def atualizar_pontuacao(pontuacao):
     else:
         return False
 
-blocos = criar_blocos(qtde_blocos_linha, qtde_linhas_blocos)
+blocos = criar_blocos()
 
 while not fim_jogo:
     desenhar_inicio_jogo()
