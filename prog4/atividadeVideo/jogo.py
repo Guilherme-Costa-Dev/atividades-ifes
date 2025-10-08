@@ -1,39 +1,56 @@
 import pygame
 
+# constantes
+class Const:
+    TAMANHO_TELA = (800, 800)
+    TAMANHO_BOLA = 15
+    TAMANHO_JOGADOR = 100
+    ALTURA_JOGADOR = 15
+    QTD_BLOCOS_LINHA = 8
+    QTD_LINHAS_BLOCOS = 6
+    DISTANCIA_BLOCOS = 5
+    ALTURA_BLOCO = 15
+    DISTANCIA_ENTRE_LINHAS = 25  # 15 + 10 (altura bloco + espaço)
+    MOVIMENTO_BOLA_INICIAL = [2, -2]
+    VELOCIDADE_JOGADOR = 2.5
+
+    CORES = {
+        "branca": (255, 255, 255),
+        "preta": (0, 0, 0),
+        "amarela": (255, 255, 0),
+        "azul": (0, 0, 255),
+        "verde": (0, 255, 0)
+    }
+
 # inicializar
 pygame.init()
 
-tamanho_tela = (800, 800)
-tela = pygame.display.set_mode(tamanho_tela)
+tela = pygame.display.set_mode(Const.TAMANHO_TELA)
 pygame.display.set_caption("Brick Breaker Youtube")
 
-tamanho_bola = 15
-bola = pygame.Rect(100, 500, tamanho_bola, tamanho_bola)
-tamanho_jogador = 100
-jogador = pygame.Rect(0, 750, tamanho_jogador, 15)
+bola = pygame.Rect(100, 500, Const.TAMANHO_BOLA, Const.TAMANHO_BOLA)
+jogador = pygame.Rect(0, 750, Const.TAMANHO_JOGADOR, Const.ALTURA_JOGADOR)
 
-qtde_blocos_linha = 8
-qtde_linhas_blocos = 5
+qtde_blocos_linha = Const.QTD_BLOCOS_LINHA
+qtde_linhas_blocos = Const.QTD_LINHAS_BLOCOS
 qtde_total_blocos = qtde_blocos_linha * qtde_linhas_blocos
 
+movimento_bola = Const.MOVIMENTO_BOLA_INICIAL.copy()
+
 def criar_blocos(qtde_blocos_linha, qtde_linhas_blocos):
-    altura_tela = tamanho_tela[1]
-    largura_tela = tamanho_tela[0]
-    distancia_entre_blocos = 5
+    altura_tela = Const.TAMANHO_TELA[1]
+    largura_tela = Const.TAMANHO_TELA[0]
+    distancia_entre_blocos = Const.DISTANCIA_BLOCOS
     largura_bloco = largura_tela / 8 - distancia_entre_blocos
-    altura_bloco = 15
+    altura_bloco = Const.ALTURA_BLOCO
     distancia_entre_linhas = altura_bloco + 10
 
     blocos = []
-    # criar os blocos
     for j in range(qtde_linhas_blocos):
         for i in range(qtde_blocos_linha):
-            # criar o bloco
             bloco = pygame.Rect(i * (largura_bloco + distancia_entre_blocos), j * distancia_entre_linhas, largura_bloco, altura_bloco)
-            # adicionar o bloco na lista de blocos
             blocos.append(bloco)
     return blocos
-
 
 cores = {
     "branca": (255, 255, 255),
@@ -45,11 +62,7 @@ cores = {
 
 fim_jogo = False
 pontuacao = 0
-movimento_bola = [2, -2]
 
-
-
-# desenhar as coisas na tela
 def desenhar_inicio_jogo():
     tela.fill(cores["preta"])
     pygame.draw.rect(tela, cores["azul"], jogador)
@@ -59,17 +72,17 @@ def desenhar_blocos(blocos):
     for bloco in blocos:
         pygame.draw.rect(tela, cores["verde"], bloco)
 
-# criar as funções do jogo
 def movimentar_jogador(evento):
     if evento.type == pygame.KEYDOWN:
         if evento.key == pygame.K_RIGHT:
-            if (jogador.x + tamanho_jogador) < tamanho_tela[0]:
-                jogador.x = jogador.x + 3
+            if (jogador.x + Const.TAMANHO_JOGADOR) < Const.TAMANHO_TELA[0]:
+                jogador.x = jogador.x + Const.VELOCIDADE_JOGADOR
         if evento.key == pygame.K_LEFT:
             if jogador.x > 0:
-                jogador.x = jogador.x - 3
+                jogador.x = jogador.x - Const.VELOCIDADE_JOGADOR
 
 def movimentar_bola(bola):
+    global movimento_bola
     movimento = movimento_bola
     bola.x = bola.x + movimento[0]
     bola.y = bola.y + movimento[1]
@@ -78,9 +91,9 @@ def movimentar_bola(bola):
         movimento[0] = - movimento[0]
     if bola.y <= 0:
         movimento[1] = - movimento[1]
-    if bola.x + tamanho_bola >= tamanho_tela[0]:
+    if bola.x + Const.TAMANHO_BOLA >= Const.TAMANHO_TELA[0]:
         movimento[0] = - movimento[0]
-    if bola.y + tamanho_bola >= tamanho_tela[1]:
+    if bola.y + Const.TAMANHO_BOLA >= Const.TAMANHO_TELA[1]:
         movimento = None
 
     if jogador.collidepoint(bola.x, bola.y):
@@ -100,23 +113,24 @@ def atualizar_pontuacao(pontuacao):
     else:
         return False
 
-
-
 blocos = criar_blocos(qtde_blocos_linha, qtde_linhas_blocos)
-# criar um loop infinito
+
 while not fim_jogo:
     desenhar_inicio_jogo()
     desenhar_blocos(blocos)
     fim_jogo = atualizar_pontuacao(qtde_total_blocos - len(blocos))
+
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             fim_jogo = True
 
     movimentar_jogador(evento)
+
     movimento_bola = movimentar_bola(bola)
 
     if not movimento_bola:
         fim_jogo = True
+
     pygame.time.wait(1)
     pygame.display.flip()
 
