@@ -45,7 +45,7 @@ cores = {
 
 fim_jogo = False
 pontuacao = 0
-movimento_bola = [7, -7]
+movimento_bola = [2, -2]
 
 
 
@@ -64,10 +64,10 @@ def movimentar_jogador(evento):
     if evento.type == pygame.KEYDOWN:
         if evento.key == pygame.K_RIGHT:
             if (jogador.x + tamanho_jogador) < tamanho_tela[0]:
-                jogador.x = jogador.x + 5
+                jogador.x = jogador.x + 3
         if evento.key == pygame.K_LEFT:
             if jogador.x > 0:
-                jogador.x = jogador.x - 5
+                jogador.x = jogador.x - 3
 
 def movimentar_bola(bola):
     movimento = movimento_bola
