@@ -3,8 +3,8 @@ import pygame
 # constantes
 class Const:
     TAMANHO_TELA = (800, 800)
-    TAMANHO_BOLA = 15
-    TAMANHO_JOGADOR = 100
+    TAMANHO_BOLA = 30
+    TAMANHO_JOGADOR = 200
     ALTURA_JOGADOR = 15
     QTD_BLOCOS_LINHA = 8
     QTD_LINHAS_BLOCOS = 6
@@ -26,7 +26,7 @@ class Const:
 pygame.init()
 
 tela = pygame.display.set_mode(Const.TAMANHO_TELA)
-pygame.display.set_caption("Brick Breaker Youtube")
+pygame.display.set_caption("Quebra Muros")
 
 bola = pygame.Rect(100, 500, Const.TAMANHO_BOLA, Const.TAMANHO_BOLA)
 jogador = pygame.Rect(0, 750, Const.TAMANHO_JOGADOR, Const.ALTURA_JOGADOR)
@@ -52,25 +52,18 @@ def criar_blocos(qtde_blocos_linha, qtde_linhas_blocos):
             blocos.append(bloco)
     return blocos
 
-cores = {
-    "branca": (255, 255, 255),
-    "preta": (0, 0, 0),
-    "amarela": (255, 255, 0),
-    "azul": (0, 0, 255),
-    "verde": (0, 255, 0)
-}
 
 fim_jogo = False
 pontuacao = 0
 
 def desenhar_inicio_jogo():
-    tela.fill(cores["preta"])
-    pygame.draw.rect(tela, cores["azul"], jogador)
-    pygame.draw.rect(tela, cores["branca"], bola)
+    tela.fill(Const.CORES["azul"])
+    pygame.draw.rect(tela, Const.CORES["amarela"], jogador)
+    pygame.draw.rect(tela, Const.CORES["preta"], bola)
 
 def desenhar_blocos(blocos):
     for bloco in blocos:
-        pygame.draw.rect(tela, cores["verde"], bloco)
+        pygame.draw.rect(tela, Const.CORES["verde"], bloco)
 
 def movimentar_jogador(evento):
     if evento.type == pygame.KEYDOWN:
@@ -106,7 +99,7 @@ def movimentar_bola(bola):
 
 def atualizar_pontuacao(pontuacao):
     fonte = pygame.font.Font(None, 30)
-    texto = fonte.render(f"Pontuação: {pontuacao}", 1, cores["amarela"])
+    texto = fonte.render(f"Pontuação: {pontuacao}", 1, Const.CORES["amarela"])
     tela.blit(texto, (0, 780))
     if pontuacao >= qtde_total_blocos:
         return True
