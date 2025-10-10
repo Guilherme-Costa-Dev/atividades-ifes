@@ -1,3 +1,8 @@
+'''
+    Integrantes do grupo: Guilherme Cordeiro Costa, Fillipy Costa e Pablo Nistal.
+    Grupo: Soul Society
+'''
+
 import pygame
 
 # constantes
