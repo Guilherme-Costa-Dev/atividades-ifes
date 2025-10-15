@@ -8,7 +8,7 @@
 '''
 
 def lerArquivo() -> dict:
-    nome = "base.txt"  # nome do arquivo que contém os dados dos produtos
+    nome = input()
     with open(nome, "r", encoding="utf-8") as arquivo:
         hash = {}  # dicionário que armazenará os produtos
         for i in arquivo:  # lê linha por linha do arquivo

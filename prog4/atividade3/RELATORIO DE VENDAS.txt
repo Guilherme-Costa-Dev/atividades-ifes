@@ -1,2 +1,3 @@
-abacaxi             |       3|36.90   
-TOTAL EM VENDAS = 36.90
+abacaxi             |      10|123.00  
+banana              |       3|18.90   
+TOTAL EM VENDAS = 141.90
