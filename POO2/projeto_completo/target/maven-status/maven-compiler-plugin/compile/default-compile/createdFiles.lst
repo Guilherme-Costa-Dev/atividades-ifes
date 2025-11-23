@@ -1,4 +1,6 @@
 com\mycompany\projeto_completo\views\TelaClientes.class
 com\mycompany\projeto_completo\views\TelaProdutos.class
+com\mycompany\projeto_completo\dao\ClienteDAO.class
+com\mycompany\projeto_completo\models\Cliente.class
 com\mycompany\projeto_completo\views\TelaPrincipal.class
 com\mycompany\projeto_completo\Projeto_completo.class

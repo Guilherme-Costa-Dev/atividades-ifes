@@ -4,6 +4,10 @@
  */
 package com.mycompany.projeto_completo.views;
 
+import com.mycompany.projeto_completo.dao.ClienteDAO;
+import com.mycompany.projeto_completo.models.Cliente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author guilh
@@ -67,12 +71,13 @@ public class TelaClientes extends javax.swing.JFrame {
         jLabel4.setText("Email:");
 
         try {
-            textoCpfCadastro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+            textoCpfCadastro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-###-###.##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         botaoConfirmarCadastroCliente.setText("Confirmar");
+        botaoConfirmarCadastroCliente.addActionListener(this::botaoConfirmarCadastroClienteActionPerformed);
 
         BotaoCancelarCadastroCliente.setText("Cancelar");
 
@@ -212,6 +217,24 @@ public class TelaClientes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoConfirmarCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmarCadastroClienteActionPerformed
+        //Passando os dados para um objeto
+        String cpf = textoCpfCadastro.getText();
+        String nome = textoNomeCadastro.getText();
+        String email = textoEmailCadastro.getText();
+        
+        Cliente objCadastrar = new Cliente(cpf, nome, email);
+        
+        //passar o objeto para o banco de dados
+        boolean retornoBanco = ClienteDAO.salvar(objCadastrar);
+        
+        if (retornoBanco) {
+            JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado com sucesso!");
+        } else{
+            JOptionPane.showMessageDialog(rootPane, "Falha ao cadastrar");
+        }
+    }//GEN-LAST:event_botaoConfirmarCadastroClienteActionPerformed
 
     /**
      * @param args the command line arguments

@@ -18,3 +18,5 @@ CREATE TABLE Cliente(
     emailCliente VARCHAR(50) NOT NULL,
     PRIMARY KEY (idCliente)
 );
+
+SELECT * FROM cliente;
