@@ -10,23 +10,19 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import mysql.connector
-import Inserir
-import Atualizar
-import Excluir
-import Consultar
+import insere
+import atualiza
+import exclui
+import consulta
 
 def conectar():
-    try:
-        conn = mysql.connector.connect(
+    conn = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="dantiberi0",
+            password="serra",
             database="publicacao"
         )
-        return conn
-    except mysql.connector.Error as err:
-        messagebox.showerror("Erro de conexão", f"Erro: {err}")
-        return None
+    return conn
 
 class ChildWindow:
     def __init__(self, parent, title, content=None):
@@ -83,25 +79,25 @@ class Aplicacao:
 
         menu_titulo.add_command(
             label="Inserir",
-            command=lambda: Inserir.InserirTitulo(self.root)
+            command=lambda: insere.InserirTitulo(self.root)
         )
         menu_titulo.add_separator()
 
         menu_titulo.add_command(
             label="Atualizar",
-            command=lambda: Atualizar.AtualizarTitulo(self.root)
+            command=lambda: atualiza.AtualizarTitulo(self.root)
         )
         menu_titulo.add_separator()
 
         menu_titulo.add_command(
             label="Excluir",
-            command=lambda: Excluir.DeletarTitulo(self.root)
+            command=lambda: exclui.DeletarTitulo(self.root)
         )
         menu_titulo.add_separator()
 
         menu_titulo.add_command(
             label="Consultar",
-            command=lambda: Consultar.ConsultarTitulos(self.root)
+            command=lambda: consulta.ConsultarTitulos(self.root)
         )
         menu_titulo.add_separator()
 
@@ -123,8 +119,8 @@ class Aplicacao:
         about.geometry("300x200")
 
         ttk.Label(about, text="Gerenciador de Títulos", font=('Arial', 14)).pack(pady=10)
-        ttk.Label(about, text="Versão 1.0").pack()
-        ttk.Label(about, text="Desenvolvido pelo Grupo As Branquelas").pack(pady=10)
+        ttk.Label(about, text="Versão 1.67").pack()
+        ttk.Label(about, text="Desenvolvido pelo grupo Soul Society").pack(pady=10)
 
         ttk.Button(about, text="OK", command=about.destroy).pack(pady=20)
 

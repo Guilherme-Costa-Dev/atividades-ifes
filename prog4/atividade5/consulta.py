@@ -8,8 +8,7 @@
 '''
 
 import tkinter as tk
-from tkinter import ttk, messagebox
-import mysql.connector
+from tkinter import ttk
 import app
 
 class ConsultarTitulos:
