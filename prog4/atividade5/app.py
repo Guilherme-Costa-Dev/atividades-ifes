@@ -16,13 +16,13 @@ import exclui
 import consulta
 
 def conectar():
-    conn = mysql.connector.connect(
+    bd = mysql.connector.connect(
             host="localhost",
             user="root",
             password="serra",
             database="publicacao"
         )
-    return conn
+    return bd
 
 class ChildWindow:
     def __init__(self, parent, title, content=None):
