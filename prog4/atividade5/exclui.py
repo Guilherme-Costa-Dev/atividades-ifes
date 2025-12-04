@@ -12,7 +12,7 @@ from tkinter import ttk, messagebox
 import mysql.connector
 import app
 
-class DeletarTitulo:
+class Deletar:
     def __init__(self, parent):
         self.win = tk.Toplevel(parent)
         self.win.title("Deletar Título")
@@ -29,14 +29,10 @@ class DeletarTitulo:
         if conn:
             cursor = conn.cursor()
             id_titulo = self.id_entry.get()
-            try:
-                cursor.execute("DELETE FROM autoria WHERE ID_TITULO = %s", (id_titulo,))
-                cursor.execute("DELETE FROM titulos WHERE ID_TITULO = %s", (id_titulo,))
-                conn.commit()
-                messagebox.showinfo("Sucesso", "Título deletado com sucesso!")
-                self.win.destroy()
-            except mysql.connector.Error as err:
-                messagebox.showerror("Erro", f"Falha ao deletar: {err}")
-            finally:
-                cursor.close()
-                conn.close()
+            cursor.execute("DELETE FROM autoria WHERE ID_TITULO = %s", (id_titulo,))
+            cursor.execute("DELETE FROM titulos WHERE ID_TITULO = %s", (id_titulo,))
+            conn.commit()
+            messagebox.showinfo("Sucesso", "Título deletado com sucesso!")
+            self.win.destroy()
+            cursor.close()
+            conn.close()

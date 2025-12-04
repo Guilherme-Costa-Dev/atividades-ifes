@@ -19,7 +19,7 @@ def conectar():
     bd = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="serra",
+            password="serra12345",
             database="publicacao"
         )
     return bd
@@ -79,25 +79,25 @@ class Aplicacao:
 
         menu_titulo.add_command(
             label="Inserir",
-            command=lambda: insere.InserirTitulo(self.root)
+            command=lambda: insere.Inserir(self.root)
         )
         menu_titulo.add_separator()
 
         menu_titulo.add_command(
             label="Atualizar",
-            command=lambda: atualiza.AtualizarTitulo(self.root)
+            command=lambda: atualiza.Atualizar(self.root)
         )
         menu_titulo.add_separator()
 
         menu_titulo.add_command(
             label="Excluir",
-            command=lambda: exclui.DeletarTitulo(self.root)
+            command=lambda: exclui.Deletar(self.root)
         )
         menu_titulo.add_separator()
 
         menu_titulo.add_command(
             label="Consultar",
-            command=lambda: consulta.ConsultarTitulos(self.root)
+            command=lambda: consulta.Consultar(self.root)
         )
         menu_titulo.add_separator()
 

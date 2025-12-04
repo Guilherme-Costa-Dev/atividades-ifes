@@ -9,10 +9,9 @@
 
 import tkinter as tk
 from tkinter import ttk, messagebox
-import mysql.connector
 import app
 
-class AtualizarTitulo:
+class Atualizar:
   def __init__(self, parent):
       self.win = tk.Toplevel(parent)
       self.win.title("Atualizar Título")
@@ -35,17 +34,12 @@ class AtualizarTitulo:
   def atualizar(self):
       conn = app.conectar()
       if conn:
-          cursor = conn.cursor()
-          sql = "UPDATE titulos SET TITULO_LIVRO=%s, PRECO=%s WHERE ID_TITULO=%s"
-          dados = (self.titulo_entry.get(), self.preco_entry.get(), self.id_entry.get())
-
-          try:
-              cursor.execute(sql, dados)
-              conn.commit()
-              messagebox.showinfo("Sucesso", "Título atualizado com sucesso!")
-              self.win.destroy()
-          except mysql.connector.Error as err:
-              messagebox.showerror("Erro", f"Falha ao atualizar: {err}")
-          finally:
-              cursor.close()
-              conn.close()
+            cursor = conn.cursor()
+            sql = "UPDATE titulos SET TITULO_LIVRO=%s, PRECO=%s WHERE ID_TITULO=%s"
+            dados = (self.titulo_entry.get(), self.preco_entry.get(), self.id_entry.get())
+            cursor.execute(sql, dados)
+            conn.commit()
+            messagebox.showinfo("Sucesso", "Título atualizado com sucesso!")
+            self.win.destroy()
+            cursor.close()
+            conn.close()

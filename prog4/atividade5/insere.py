@@ -12,7 +12,7 @@ from tkinter import ttk, messagebox
 import mysql.connector
 import app
 
-class InserirTitulo:
+class Inserir:
     def __init__(self, parent):
         self.win = tk.Toplevel(parent)
         self.win.title("Inserir Título")
@@ -59,13 +59,7 @@ class InserirTitulo:
                     (TITULO_LIVRO, TIPO_LIVRO, ID_EDITORA, PRECO, TOTAL_VENDA, ROYALTY,
                     MEDIA_QUANT_VENDAS, OBSERVACOES, DATA_PUBLICACAO)
                     VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
-            try:
-                cursor.execute(sql, dados)
-                conn.commit()
-                messagebox.showinfo("Sucesso", "Título inserido com sucesso!")
-                self.win.destroy()
-            except mysql.connector.Error as err:
-                messagebox.showerror("Erro", f"Falha ao inserir: {err}")
-            finally:
-                cursor.close()
-                conn.close()
+            cursor.execute(sql, dados)
+            conn.commit()
+            messagebox.showinfo("Sucesso", "Título inserido com sucesso!")
+            self.win.destroy()

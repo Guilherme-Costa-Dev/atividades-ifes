@@ -11,7 +11,7 @@ import tkinter as tk
 from tkinter import ttk
 import app
 
-class ConsultarTitulos:
+class Consultar:
     def __init__(self, parent):
         self.win = tk.Toplevel(parent)
         self.win.title("Consultar Títulos")
