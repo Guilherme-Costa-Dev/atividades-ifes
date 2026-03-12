@@ -11,12 +11,14 @@
         android:id="@+id/txtNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Guilherme Cordeiro"
-        android:textSize="60sp"
-        tools:text="Seja bem vindo"
-        android:textColor="@color/blue"
-        android:textStyle="italic"
         android:fontFamily="@font/fontefodinha"
-        />
+        android:text="Guilherme Cordeiro"
+        android:textColor="@color/blue"
+        android:textSize="60sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Seja bem vindo"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
