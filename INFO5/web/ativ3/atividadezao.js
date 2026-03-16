@@ -62,3 +62,20 @@ function pesquisarNome(){
     }
 }
 
+function apagarDados(){
+    nome = document.getElementById("pesquisa").value;
+
+    for(let i = 0; i < lista.length; i+=4){
+        if (nome == lista[i]){
+            lista.splice(i, 4)
+            var deuCerto = 1;   
+        }
+    }
+    if (deuCerto != 1){
+        alert("Nome não encontrado");
+    } else{
+        alert("Apagado com sucesso")
+    }
+
+}
+
