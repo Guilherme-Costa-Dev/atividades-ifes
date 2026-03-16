@@ -8,14 +8,13 @@ function incluir(){
 
     if (nome == ""){
         alert("Insira o nome");
-    } else{
-        if (tel == ""){
-            alert("Insira o telefone");
+    } else{ if (tel == ""){
+            alert("Insira o telefone")
         } else{
             lista.push(nome);
-            lista.push(tel);
             lista.push(email);
             lista.push(endereco);
+            lista.push(tel);
         }
     }
 }
