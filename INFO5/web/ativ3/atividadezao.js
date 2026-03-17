@@ -59,11 +59,12 @@ function pesquisarNome(){
     }
     if (deuCerto != 1){
         alert("Nome não encontrado");
+        document.getElementById("tabelaPesquisa").innerHTML = "";
     }
 }
 
 function apagarDados(){
-    nome = document.getElementById("pesquisa").value;
+    nome = document.getElementById("apagar").value;
 
     for(let i = 0; i < lista.length; i+=4){
         if (nome == lista[i]){
@@ -81,36 +82,54 @@ function apagarDados(){
 
 }
 
-function alterar(){
-    let nomePesquisa = document.getElementById("pesquisa").value;
-    let novoNome = document.getElementById("nome").value;
-    let novoTel = document.getElementById("tel").value;
-    let novoEmail = document.getElementById("email").value;
-    let novoEndereco = document.getElementById("endereco").value;
-
-    if (nomePesquisa == "") {
-        alert("Digite o nome no campo de pesquisa para alterar");
-        return;
-    }
-
-    let deuCerto = 0;
+function alterarDados(){
+    var nome = document.getElementById("alterar").value;
+    indice = -1;
 
     for (let i = 0; i < lista.length; i += 4) {
-        if (nomePesquisa == lista[i]) {
-            lista[i] = novoNome || lista[i];
-            lista[i+1] = novoEmail || lista[i+1];
-            lista[i+2] = novoEndereco || lista[i+2];
-            lista[i+3] = novoTel || lista[i+3];
-            deuCerto = 1;
+        if (nome == lista[i]) {
+            indice = i;
             break;
         }
     }
 
-    if (deuCerto != 1) {
+    if (indice == -1) {
         alert("Nome não encontrado");
-    } else {
-        alert("Alterado com sucesso!");
-        listar();
+        return;
     }
+
+    var html = `
+        <br>
+        <input type="text" id="novoNome" value="${lista[indice]}">
+        <input type="text" id="novoEmail" value="${lista[indice + 1]}">
+        <input type="text" id="novoEndereco" value="${lista[indice + 2]}">
+        <input type="text" id="novoTel" value="${lista[indice + 3]}">
+        <input type="button" value="Confirmar Alteração" onclick="confirmarAlteracao()">`;
+
+    document.getElementById("tabelaAlterar").innerHTML = html;
 }
 
+function confirmarAlteracao() {
+    var novoNome = document.getElementById("novoNome").value;
+    var novoEmail = document.getElementById("novoEmail").value;
+    var novoEndereco = document.getElementById("novoEndereco").value;
+    var novoTel = document.getElementById("novoTel").value;
+
+    if (novoNome == "") {
+        alert("Insira o nome");
+        return;
+    }
+    if (novoTel == "") {
+        alert("Insira o telefone");
+        return;
+    }
+
+    lista[indice] = novoNome;
+    lista[indice + 1] = novoEmail;
+    lista[indice + 2] = novoEndereco;
+    lista[indice + 3] = novoTel;
+
+    alert("Dados alterados com sucesso");
+    listar();
+    document.getElementById("tabelaAlterar").innerHTML = "";
+}
