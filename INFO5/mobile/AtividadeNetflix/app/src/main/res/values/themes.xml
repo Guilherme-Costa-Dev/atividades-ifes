@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TarefaNetflix" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+
+        <!-- A colorPrimary é a cor principal do aplicativo. É a cor que mais aparece na interface
+         No início, ela pode chamar atenção, mas como está presente em muitos elementos, se torna normal para o olhar do usuário
+         Ex: ToolBar, botões, Floating action, barra de progresso, caixa de texto -->
+        <item name="colorPrimary">@color/primaria</item>
+
+        <!-- A colorPrimaryVariant é geralmente mais escura que a cor primária e tem a função de servir como apoio visual e dar contraste.
+        É usada principalmente em áreas que precisam de diferenciação em relação a cor principal,
+        como a barra de status e superfícies elevadas, que representam camadas superiores ou efeitos de profundidade -->
+        <item name="colorPrimaryVariant">@color/primaria_variacao</item>
+
+        <!-- colorSecondary é utilizada para destacar elementos importantes ou interativos
+        Diferente da cor primária, ela não aparece com frequência, justamente por isso, consegue chamar mais atenção.
+        É a cor que puxa o olhar do usuário, sendo ideal para indicar ações ou elementos que precisam ser percebidos rapidamente.
+        Ex.: botão cancelar, botão voltar, botão pular-->
+        <item name="colorSecondary">@color/secundaria</item>
+
+        <!-- cor da barra de status-->
+        <!-- ?attr em vez de apontar para uma cor específica, a referência é feita a um atributo de tema.
+        Quando a a aplicação é executada, o Android verifica o tema ativo (por exemplo: claro ou escuro)-->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@color/black</item>
+    </style>
+
+    <style name="Theme.TarefaNetflix" parent="Base.Theme.TarefaNetflix" />
+</resources>
