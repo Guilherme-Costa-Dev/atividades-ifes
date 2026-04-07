@@ -32,11 +32,11 @@
 </head>
 <body>
     <form method="post">
-        <h2>Valor 1</h2>
+        <label for="valor1">Valor 1:</label><br>
         <input type="number" name="valor1" id="valor1" value="<?php echo $valor1; ?>"><br>
-        <h2>Valor 2</h2>
+        <label for="valor2">Valor 2:</label><br>
         <input type="number" name="valor2" id="valor2" value="<?php echo $valor2; ?>"><br>
-        <h2>Função</h2>
+        <label for="select">Função:</label><br>
         <select name="select" id="select">
             <option value="somar">Somar</option>
             <option value="subtrair">Subtrair</option>
