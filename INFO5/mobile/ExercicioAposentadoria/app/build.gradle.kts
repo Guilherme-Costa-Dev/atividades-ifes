@@ -8,6 +8,7 @@ android {
         version = release(36)
     }
 
+
     defaultConfig {
         applicationId = "com.example.exercicioaposentadoria"
         minSdk = 24
@@ -30,6 +31,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    viewBinding{
+        enable = true
     }
 }
 
