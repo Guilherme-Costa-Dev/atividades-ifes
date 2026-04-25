@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val itens = listOf("Masculino", "Feminino")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, itens)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val adapter = ArrayAdapter(this, R.layout.spinner, itens)
+        adapter.setDropDownViewResource(R.layout.spinner)
         binding.spinnerSexo.adapter = adapter
 
         binding.buttonCalcular.setOnClickListener {
