@@ -1,4 +1,7 @@
 <html>
+    <head>
+        <title>Atividade sessoes - 3</title>
+    </head>
     <body>
         <?php
             date_default_timezone_set("America/Sao_Paulo");

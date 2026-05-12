@@ -1,4 +1,7 @@
 <html>
+    <head>
+        <title>Atividade sessoes - 2</title>
+    </head>
     <body>
         <form action="index.php" method="post">
             <p>Informe o valor:</p>

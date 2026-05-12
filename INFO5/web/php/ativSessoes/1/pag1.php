@@ -7,8 +7,7 @@
         }
     ?>
     <head>
-        <title> Sessão </title>
-        <meta charset="utf-8">
+        <title>Atividade sessoes - 2</title>
     </head>
 
     <script>
