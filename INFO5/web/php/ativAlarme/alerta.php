@@ -13,7 +13,7 @@
     <style>
         body{
             background-color: black;
-            color: green;
+            color: red;
             text-align: center;
             margin-top: 200px;
             font-size: 40px;

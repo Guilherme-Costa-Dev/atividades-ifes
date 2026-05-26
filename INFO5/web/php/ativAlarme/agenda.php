@@ -1,7 +1,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Agenda Simples</title>
+  <title>Agenda</title>
 </head>
 <body>
     <h2>Relógio:</h2>
