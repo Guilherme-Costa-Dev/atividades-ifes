@@ -12,7 +12,7 @@ def criarLista(tam:int)->list:
     for i in range(tam):
         num = float(input())
         lista.append(num)
-        lista.sort()
+    lista.sort()
     return lista
 
 def intercalacaoOrd(lista1:list, lista2:list)->list:
